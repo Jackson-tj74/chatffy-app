@@ -15,7 +15,7 @@ const connectDB = async ()=>{
         })
        
     } catch (error) {
-        console.log("error",error)
+        console.log("Internal server error",error)
     }
 }
 
