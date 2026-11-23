@@ -1,5 +1,6 @@
-import ENV from "./config/env.js";
+
 import express from "express"
+import ENV from "./config/env.js";
 import connectDB from "./config/db.js";
 import mainRouter from "./routes/index.routes.js";
 import cookieParser from "cookie-parser";
@@ -15,15 +16,12 @@ app.use(cookieParser());
 
 
 app.use("/api/v1",mainRouter)
-
-try {
+ 
    
     app.listen(PORT,()=>{
     console.log(`Server is running on ${PORT}`)
      
     connectDB();
 })
-} catch (error) {
-    console.log("Internal server error")
-}
+
 
