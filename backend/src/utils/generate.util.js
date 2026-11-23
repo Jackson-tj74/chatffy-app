@@ -10,12 +10,13 @@ const  generateToken = (userId,res) =>{
             throw new error("Secret is not found")
         }
         
-        const Token = jwt.sign(userId,process.env.SECRET_KEY,{expiresIn:"7d"})
+        const Token = jwt.sign({userId},ENV.SECRET_KEY,{expiresIn:"7d"})
 
         res.cookie("jwt",Token,{
-            maxAge:70*60*80*100,
-            httpOnly:true,
-            secure:`${process.env.NODE_DEV} `,"false":"true" 
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+              httpOnly: true,
+              sameSite: "strict",
+              secure: ENV.NODE_ENV !== "development",
         })
     } catch (error) {
         
@@ -27,3 +28,4 @@ const  generateToken = (userId,res) =>{
 }
 
 export default generateToken
+
